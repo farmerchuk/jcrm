@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151126044128) do
+ActiveRecord::Schema.define(version: 20151127201117) do
 
   create_table "account_contacts", force: true do |t|
     t.integer  "account_id"
@@ -67,12 +67,17 @@ ActiveRecord::Schema.define(version: 20151126044128) do
   create_table "opportunities", force: true do |t|
     t.string   "name"
     t.integer  "stage_id"
-    t.integer  "account_id"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "search_display_name"
     t.string   "search_key"
+  end
+
+  create_table "opportunity_accounts", force: true do |t|
+    t.integer  "opportunity_id"
+    t.integer  "account_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "opportunity_contacts", force: true do |t|
@@ -82,8 +87,22 @@ ActiveRecord::Schema.define(version: 20151126044128) do
     t.datetime "updated_at"
   end
 
+  create_table "opportunity_products", force: true do |t|
+    t.integer  "opportunity_id"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "opportunity_stages", force: true do |t|
     t.string   "stage"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "opportunity_users", force: true do |t|
+    t.integer  "opportunity_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -120,6 +139,9 @@ ActiveRecord::Schema.define(version: 20151126044128) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "search_display_name"
+    t.string   "search_key"
+    t.string   "email"
   end
 
 end

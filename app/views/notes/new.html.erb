@@ -1,10 +1,4 @@
 <div class="col-md-8 col-md-offset-2">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Create New Note</h3>
-    </div>
-    <div class="panel-body">
-      Note gets created here!
-    </div>
-  </div>
+  <%= render "shared/errors", record: @note %>
+  <%= render "notes/form", record_heading: "Create New Note" %>
 </div>

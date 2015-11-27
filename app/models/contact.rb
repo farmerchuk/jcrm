@@ -16,6 +16,6 @@ class Contact < ActiveRecord::Base
 
   def generate_searchable
     self.search_display_name = "#{self.first_name} #{self.last_name}"
-    self.search_key = self.last_name.gsub(/[^0-9a-z]/i, '').downcase
+    self.search_key = (self.first_name + self.last_name).gsub(/[^0-9a-z]/i, '').downcase
   end
 end

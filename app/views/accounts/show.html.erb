@@ -4,12 +4,18 @@
 </div>
 
 <div class="col-md-4">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Linked Records</h3>
-    </div>
-    <div class="panel-body">
-      <%= render "shared/search" %>
-    </div>
-  </div>
+  <%= render "shared/link_records" %>
+</div>
+
+<div class="col-md-8">
+  <ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#">Contacts</a></li>
+    <li role="presentation"><a href="#">Opportunities</a></li>
+    <li role="presentation"><a href="#">Users</a></li>
+    <li role="presentation"><a href="#">Notes</a></li>
+  </ul>
+  <br/>
+  <% @contacts.each do |contact| %>
+    <%= render "contacts/short_form", contact: contact %>
+  <% end %>
 </div>

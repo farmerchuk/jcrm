@@ -16,6 +16,7 @@ class ContactsController < ApplicationController
 
   def show
     @contact = Contact.find(params[:id])
+    @record_type = "contact"
   end
 
   def update

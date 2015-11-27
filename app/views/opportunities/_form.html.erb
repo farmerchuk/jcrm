@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= record_heading %></h3>
+  </div>
+  <div class="panel-body">
+    <%= form_for @opportunity do |f| %>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <%= f.label :name, "Opportunity Name" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <% if ! @opportunity.new_record? %>
+          <div class="form-group col-md-3" id="disabledInput">
+            <%= f.label :created_at, "Created" %>
+            <%= f.text_field :created_at, class: "form-control", disabled: true %>
+          </div>
+          <div class="form-group col-md-3">
+            <%= f.label :updated_at, "Last Updated" %>
+            <%= f.text_field :updated_at, class: "form-control", disabled: true %>
+          </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <%= f.label :stage_id, "Stage" %>
+          <%= f.select :stage_id, OpportunityStage.all.collect { |p| [ p.stage, p.id ] }, {}, { class: "form-control" } %>
+        </div>
+      </div>
+      <hr/>
+      <%= f.submit @opportunity.new_record? ? "Create Opportunity" : "Update Opportunity", class: "btn btn-primary pull-right" %>
+    <% end %>
+  </div>
+</div>

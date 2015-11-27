@@ -16,6 +16,8 @@ class AccountsController < ApplicationController
 
   def show
     @account = Account.find(params[:id])
+    @record_type = "account"
+    @contacts = Contact.all
   end
 
   def update
