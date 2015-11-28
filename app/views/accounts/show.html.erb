@@ -9,13 +9,30 @@
 
 <div class="col-md-8">
   <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#">Contacts</a></li>
-    <li role="presentation"><a href="#">Opportunities</a></li>
-    <li role="presentation"><a href="#">Users</a></li>
-    <li role="presentation"><a href="#">Notes</a></li>
+    <li role="presentation" class="<%= 'active' if @tab == 'contacts' || @tab == nil %>">
+      <%= link_to "Contacts", account_path(@account, tab: "contacts") %>
+    </li>
+    <li role="presentation" class="<%= 'active' if @tab == 'opportunities' %>">
+      <%= link_to "Opportunities", account_path(@account, tab: "opportunities") %>
+    </li>
+    <li role="presentation" class="<%= 'active' if @tab == 'notes' %>">
+      <%= link_to "Notes", account_path(@account, tab: "notes") %>
+    </li>
   </ul>
   <br/>
-  <% @contacts.each do |contact| %>
-    <%= render "contacts/short_form", contact: contact %>
+
+  <% if params[:tab] == "contacts" || params[:tab] == nil %>
+    <% @contacts.each do |contact| %>
+      <%= render "contacts/short_form", contact: contact %>
+    <% end %>
+  <% elsif params[:tab] == "opportunities" %>
+    <% @opportunities.each do |opportunity| %>
+      <%= render "opportunities/short_form", opportunity: opportunity %>
+    <% end %>
+  <% else params[:tab] == "notes" %>
+    <% @notes.each do |note| %>
+      <%= render "notes/short_form", note: note %>
+    <% end %>
   <% end %>
+
 </div>

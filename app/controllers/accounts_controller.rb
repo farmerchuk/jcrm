@@ -16,8 +16,11 @@ class AccountsController < ApplicationController
 
   def show
     @account = Account.find(params[:id])
+    @tab = params[:tab]
     @record_type = "account"
-    @contacts = Contact.all
+    @contacts = Contact.all   # Change the to related records
+    @opportunities = Opportunity.all
+    @notes = Note.all
   end
 
   def update

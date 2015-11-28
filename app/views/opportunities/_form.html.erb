@@ -10,7 +10,7 @@
           <%= f.text_field :name, class: "form-control" %>
         </div>
         <% if ! @opportunity.new_record? %>
-          <div class="form-group col-md-3" id="disabledInput">
+          <div class="form-group col-md-3">
             <%= f.label :created_at, "Created" %>
             <%= f.text_field :created_at, class: "form-control", disabled: true %>
           </div>

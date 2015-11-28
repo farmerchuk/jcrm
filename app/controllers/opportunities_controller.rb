@@ -16,7 +16,11 @@ class OpportunitiesController < ApplicationController
 
   def show
     @opportunity = Opportunity.find(params[:id])
+    @tab = params[:tab]
     @record_type = "opportunity"
+    @accounts = Account.all
+    @contacts = Contact.all
+    @notes = Note.all
   end
 
   def update

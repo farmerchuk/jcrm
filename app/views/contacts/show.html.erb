@@ -6,3 +6,33 @@
 <div class="col-md-4">
   <%= render "shared/link_records" %>
 </div>
+
+<div class="col-md-8">
+  <ul class="nav nav-tabs">
+    <li role="presentation" class="<%= 'active' if @tab == 'accounts' || @tab == nil %>">
+      <%= link_to "Accounts", contact_path(@contact, tab: "accounts") %>
+    </li>
+    <li role="presentation" class="<%= 'active' if @tab == 'opportunities' %>">
+      <%= link_to "Opportunities", contact_path(@contact, tab: "opportunities") %>
+    </li>
+    <li role="presentation" class="<%= 'active' if @tab == 'notes' %>">
+      <%= link_to "Notes", contact_path(@contact, tab: "notes") %>
+    </li>
+  </ul>
+  <br/>
+
+  <% if params[:tab] == "accounts" || params[:tab] == nil %>
+    <% @accounts.each do |account| %>
+      <%= render "accounts/short_form", account: account %>
+    <% end %>
+  <% elsif params[:tab] == "opportunities" %>
+    <% @opportunities.each do |opportunity| %>
+      <%= render "opportunities/short_form", opportunity: opportunity %>
+    <% end %>
+  <% else params[:tab] == "notes" %>
+    <% @notes.each do |note| %>
+      <%= render "notes/short_form", note: note %>
+    <% end %>
+  <% end %>
+
+</div>
