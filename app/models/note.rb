@@ -1,6 +1,11 @@
 class Note < ActiveRecord::Base
   belongs_to :user
-  belongs_to :noteable, polymorphic: true
+  has_many :note_accounts
+  has_many :accounts, through: :note_accounts
+  has_many :note_contacts
+  has_many :contacts, through: :note_contacts
+  has_many :note_opportunities
+  has_many :opportunities, through: :note_opportunities
 
   before_save :generate_searchable
 

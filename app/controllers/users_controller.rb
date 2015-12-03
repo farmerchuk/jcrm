@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @record_type = "user"
-    @opportunities = Opportunity.all
+    @opportunities = @user.opportunities
   end
 
   def update

@@ -20,9 +20,9 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
     @tab = params[:tab]
     @record_type = "note"
-    @accounts = []
-    @contacts = []
-    @opportunities = []
+    @accounts = @note.accounts
+    @contacts = @note.contacts
+    @opportunities = @note.opportunities
   end
 
   def update

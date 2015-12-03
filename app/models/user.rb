@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   belongs_to :role
-  has_many :opportunities
-  has_many :notes, through: :noteable
+  has_many :opportunity_users
+  has_many :opportunities, through: :opportunity_users
 
   before_save :generate_searchable
 

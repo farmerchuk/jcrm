@@ -3,7 +3,8 @@ class Account < ActiveRecord::Base
   has_many :contacts, through: :account_contacts
   has_many :opportunity_accounts
   has_many :opportunities, through: :opportunity_accounts
-  has_many :notes, as: :noteable
+  has_many :note_accounts
+  has_many :notes, through: :note_accounts
   belongs_to :industry
 
   before_save :generate_searchable

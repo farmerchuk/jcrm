@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151127201117) do
+ActiveRecord::Schema.define(version: 20151203043616) do
 
   create_table "account_contacts", force: true do |t|
     t.integer  "account_id"
@@ -52,12 +52,31 @@ ActiveRecord::Schema.define(version: 20151127201117) do
     t.datetime "updated_at"
   end
 
+  create_table "note_accounts", force: true do |t|
+    t.integer  "note_id"
+    t.integer  "account_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "note_contacts", force: true do |t|
+    t.integer  "note_id"
+    t.integer  "contact_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "note_opportunities", force: true do |t|
+    t.integer  "note_id"
+    t.integer  "opportunity_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "notes", force: true do |t|
     t.string   "title"
     t.text     "body"
     t.integer  "user_id"
-    t.string   "noteable_type"
-    t.integer  "noteable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "search_display_name"

@@ -3,7 +3,8 @@ class Contact < ActiveRecord::Base
   has_many :accounts, through: :account_contacts
   has_many :opportunity_contacts
   has_many :opportunities, through: :opportunity_contacts
-  has_many :notes, as: :noteable
+  has_many :note_contacts
+  has_many :notes, through: :note_contacts
 
   before_save :generate_searchable
 

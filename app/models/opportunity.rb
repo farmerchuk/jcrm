@@ -1,5 +1,4 @@
 class Opportunity < ActiveRecord::Base
-  belongs_to :user
   belongs_to :opportunity_stage
   has_many :opportunity_accounts
   has_many :accounts, through: :opportunity_accounts
@@ -7,7 +6,10 @@ class Opportunity < ActiveRecord::Base
   has_many :contacts, through: :opportunity_contacts
   has_many :transactions
   has_many :products, through: :transactions
-  has_many :notes, as: :noteable
+  has_many :note_opportunities
+  has_many :notes, through: :note_opportunities
+  has_many :opportunity_users
+  has_many :users, through: :opportunity_users
 
   before_save :generate_searchable
 
