@@ -9,6 +9,7 @@
 </div>
 
 <div class="col-md-8">
+  <% if @record_type != :account && @record_type != :user %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Accounts</h3>
@@ -19,6 +20,8 @@
         <% end %>
       </div>
     </div>
+  <% end %>
+  <% if @record_type != :contact && @record_type != :user %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Contacts</h3>
@@ -29,6 +32,8 @@
         <% end %>
       </div>
     </div>
+  <% end %>
+  <% if @record_type != :opportunity %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Opportunities</h3>
@@ -39,6 +44,8 @@
         <% end %>
       </div>
     </div>
+  <% end %>
+  <% if @record_type != :note && @record_type != :user %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Notes</h3>
@@ -49,6 +56,8 @@
         <% end %>
       </div>
     </div>
+  <% end %>
+  <% if @record_type == :opportunity || @record_type == :none %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Users</h3>
@@ -59,4 +68,5 @@
         <% end %>
       </div>
     </div>
+  <% end %>
 </div>

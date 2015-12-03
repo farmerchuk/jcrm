@@ -18,6 +18,9 @@
     <li role="presentation" class="<%= 'active' if @tab == 'notes' %>">
       <%= link_to "Notes", opportunity_path(@opportunity, tab: "notes") %>
     </li>
+    <li role="presentation" class="<%= 'active' if @tab == 'users' %>">
+      <%= link_to "Users", opportunity_path(@opportunity, tab: "users") %>
+    </li>
   </ul>
   <br/>
 
@@ -29,9 +32,13 @@
     <% @contacts.each do |contact| %>
       <%= render "contacts/short_form", contact: contact %>
     <% end %>
-  <% else params[:tab] == "notes" %>
+  <% elsif params[:tab] == "notes" %>
     <% @notes.each do |note| %>
       <%= render "notes/short_form", note: note %>
+    <% end %>
+  <% else params[:tab] == "users" %>
+    <% @users.each do |user| %>
+      <%= render "users/short_form", user: user %>
     <% end %>
   <% end %>
 

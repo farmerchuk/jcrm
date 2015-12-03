@@ -1,7 +1,8 @@
 class Opportunity < ActiveRecord::Base
   belongs_to :user
-  belongs_to :account
   belongs_to :opportunity_stage
+  has_many :opportunity_accounts
+  has_many :accounts, through: :opportunity_accounts
   has_many :opportunity_contacts
   has_many :contacts, through: :opportunity_contacts
   has_many :transactions

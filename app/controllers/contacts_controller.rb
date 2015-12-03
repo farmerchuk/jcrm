@@ -18,9 +18,9 @@ class ContactsController < ApplicationController
     @contact = Contact.find(params[:id])
     @tab = params[:tab]
     @record_type = "contact"
-    @accounts = Account.all
-    @opportunities = Opportunity.all
-    @notes = Note.all
+    @accounts = @contact.accounts
+    @opportunities = @contact.opportunities
+    @notes = @contact.notes
   end
 
   def update

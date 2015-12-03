@@ -21,6 +21,7 @@ class OpportunitiesController < ApplicationController
     @accounts = Account.all
     @contacts = Contact.all
     @notes = Note.all
+    @users = User.all
   end
 
   def update

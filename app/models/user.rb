@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :phone_number, presence: true, numericality: {only_integer: true},
     length: { is: 10 }
-  validates :password, presence: true, length: { minimum: 8 }, on: :create
+  validates :password, presence: true, length: { minimum: 8, maximum: 16 }, on: :create
+  validates_confirmation_of :password, on: :create
 
   private
 

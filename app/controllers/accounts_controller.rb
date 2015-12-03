@@ -18,9 +18,9 @@ class AccountsController < ApplicationController
     @account = Account.find(params[:id])
     @tab = params[:tab]
     @record_type = "account"
-    @contacts = Contact.all   # Change the to related records
-    @opportunities = Opportunity.all
-    @notes = Note.all
+    @contacts = @account.contacts
+    @opportunities = @account.opportunities
+    @notes = @account.notes
   end
 
   def update

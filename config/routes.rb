@@ -2,6 +2,7 @@ Jcrm::Application.routes.draw do
 
   root to: "home#show"
   get "/search", to: "home#search"
+  get "/search_link", to: "home#search_link"
 
   resources :accounts
   resources :contacts

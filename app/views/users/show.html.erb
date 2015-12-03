@@ -1,0 +1,22 @@
+<div class="col-md-8">
+  <%= render "shared/errors", record: @user %>
+  <%= render "users/form", record_heading: "Account: #{@user.search_display_name}" %>
+</div>
+
+<div class="col-md-4">
+  <%= render "shared/link_records" %>
+</div>
+
+<div class="col-md-8">
+  <ul class="nav nav-tabs">
+    <li role="presentation" class="active">
+      <a href="#">Opportunities</a>
+    </li>
+  </ul>
+  <br/>
+
+  <% @opportunities.each do |opportunity| %>
+    <%= render "opportunities/short_form", opportunity: opportunity %>
+  <% end %>
+
+</div>
