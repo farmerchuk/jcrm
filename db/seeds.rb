@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Industry.create(name: "Technology")
+Industry.create(name: "Finance")
+Industry.create(name: "Healthcare")
+Industry.create(name: "Food/Entertainment")
+
+OpportunityStage.create(stage: "No Stage")
+OpportunityStage.create(stage: "Pipeline")
+OpportunityStage.create(stage: "Best Case")
+OpportunityStage.create(stage: "Commit")
+OpportunityStage.create(stage: "Closed - Won")
+OpportunityStage.create(stage: "Closed - Lost")

@@ -1,70 +1,65 @@
 <div class="col-md-2">
-  <% if @record_type != :none %>
-    <h4>Link to ...</h4>
-    <hr/>
-  <% else %>
-    <h4>Search results ...</h4>
-    <hr/>
-  <% end %>
+  <h4>Link to ...</h4>
+  <hr/>
 </div>
 
 <div class="col-md-8">
-  <% if @record_type != :account && @record_type != :user %>
+  <% if @record_type != Account && @record_type != User %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Accounts</h3>
       </div>
       <div class="panel-body">
         <% @accounts.each do |account| %>
-          <%= link_to account.search_display_name, account_path(account), class: "btn btn-block btn-default" %>
+          <%= link_to account.search_display_name, link_account_path(account), method: :post, class: "btn btn-block btn-default" %>
         <% end %>
       </div>
     </div>
   <% end %>
-  <% if @record_type != :contact && @record_type != :user %>
+  <% if @record_type != Contact && @record_type != User %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Contacts</h3>
       </div>
       <div class="panel-body">
         <% @contacts.each do |contact| %>
-          <%= link_to "#{contact.search_display_name} (#{contact.email})", contact_path(contact), class: "btn btn-block btn-default" %>
+          <%= link_to "#{contact.search_display_name} (#{contact.email})", link_contact_path(contact), method: :post, class: "btn btn-block btn-default" %>
         <% end %>
       </div>
     </div>
   <% end %>
-  <% if @record_type != :opportunity %>
+  <% if @record_type != Opportunity %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Opportunities</h3>
       </div>
       <div class="panel-body">
         <% @opportunities.each do |opportunity| %>
-          <%= link_to opportunity.search_display_name, opportunity_path(opportunity), class: "btn btn-block btn-default" %>
+          <%= link_to opportunity.search_display_name, link_opportunity_path(opportunity), method: :post, class: "btn btn-block btn-default" %>
         <% end %>
       </div>
     </div>
   <% end %>
-  <% if @record_type != :note && @record_type != :user %>
+  <% if @record_type != Note && @record_type != User %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Notes</h3>
       </div>
       <div class="panel-body">
         <% @notes.each do |note| %>
-          <%= link_to note.search_display_name, note_path(note), class: "btn btn-block btn-default" %>
+          <%= link_to note.search_display_name, link_note_path(note), method: :post, class: "btn btn-block btn-default" %>
         <% end %>
       </div>
     </div>
   <% end %>
-  <% if @record_type == :opportunity || @record_type == :none %>
+  <% if @record_type == Opportunity || @record_type == nil %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Users</h3>
       </div>
       <div class="panel-body">
         <% @users.each do |user| %>
-          <%= link_to "#{user.search_display_name} (#{user.email})", user_path(user), class: "btn btn-block btn-default" %>
+          <%= link_to "#{user.search_display_name} (#{user.email})", link_user_path(user), method: :post, class: "btn btn-block btn-default" %>
         <% end %>
       </div>
     </div>

@@ -4,11 +4,35 @@ Jcrm::Application.routes.draw do
   get "/search", to: "home#search"
   get "/search_link", to: "home#search_link"
 
-  resources :accounts
-  resources :contacts
-  resources :opportunities
-  resources :notes
-  resources :users
+  resources :accounts do
+    member do
+      post "link"
+    end
+  end
+
+  resources :contacts do
+    member do
+      post "link"
+    end
+  end
+
+  resources :opportunities do
+    member do
+      post "link"
+    end
+  end
+
+  resources :notes do
+    member do
+      post "link"
+    end
+  end
+  
+  resources :users do
+    member do
+      post "link"
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

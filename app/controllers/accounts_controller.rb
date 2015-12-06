@@ -15,9 +15,9 @@ class AccountsController < ApplicationController
   end
 
   def show
+    session[:active_record] = { type: Account, id: params[:id] }
     @account = Account.find(params[:id])
     @tab = params[:tab]
-    @record_type = "account"
     @contacts = @account.contacts
     @opportunities = @account.opportunities
     @notes = @account.notes
@@ -31,6 +31,20 @@ class AccountsController < ApplicationController
       redirect_to account_path(@account)
     else
       render :show
+    end
+  end
+
+  def link
+    @account = Account.find(params[:id])
+    @current_record = session[:active_record][:type].find(session[:active_record][:id])
+
+    if @current_record.accounts.include?(@account)
+      flash[:danger] = "'#{@current_record.search_display_name}' is already linked to '#{@account.search_display_name}'"
+      redirect_to @current_record
+    else
+      @current_record.accounts << @account
+      flash[:notice] = "'#{@current_record.search_display_name}' successfully linked to '#{@account.search_display_name}'"
+      redirect_to @current_record
     end
   end
 

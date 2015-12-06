@@ -16,8 +16,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    session[:active_record] = { type: User, id: params[:id] }
     @user = User.find(params[:id])
-    @record_type = "user"
     @opportunities = @user.opportunities
   end
 
@@ -29,6 +29,20 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     else
       render :show
+    end
+  end
+
+  def link
+    @user = User.find(params[:id])
+    @current_record = session[:active_record][:type].find(session[:active_record][:id])
+
+    if @current_record.users.include?(@user)
+      flash[:danger] = "'#{@current_record.search_display_name}' is already linked to '#{@user.search_display_name}'"
+      redirect_to @current_record
+    else
+      @current_record.users << @user
+      flash[:notice] = "'#{@current_record.search_display_name}' successfully linked to '#{@user.search_display_name}'"
+      redirect_to @current_record
     end
   end
 

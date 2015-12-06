@@ -15,9 +15,9 @@ class OpportunitiesController < ApplicationController
   end
 
   def show
+    session[:active_record] = { type: Opportunity, id: params[:id] }
     @opportunity = Opportunity.find(params[:id])
     @tab = params[:tab]
-    @record_type = "opportunity"
     @accounts = @opportunity.accounts
     @contacts = @opportunity.contacts
     @notes = @opportunity.notes
@@ -32,6 +32,20 @@ class OpportunitiesController < ApplicationController
       redirect_to opportunity_path(@opportunity)
     else
       render :new
+    end
+  end
+
+  def link
+    @opportunity = Opportunity.find(params[:id])
+    @current_record = session[:active_record][:type].find(session[:active_record][:id])
+
+    if @current_record.opportunities.include?(@opportunity)
+      flash[:danger] = "'#{@current_record.search_display_name}' is already linked to '#{@opportunity.search_display_name}'"
+      redirect_to @current_record
+    else
+      @current_record.opportunities << @opportunity
+      flash[:notice] = "'#{@current_record.search_display_name}' successfully linked to '#{@opportunity.search_display_name}'"
+      redirect_to @current_record
     end
   end
 

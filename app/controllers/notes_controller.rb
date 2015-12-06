@@ -17,9 +17,9 @@ class NotesController < ApplicationController
   end
 
   def show
+    session[:active_record] = { type: Note, id: params[:id] }
     @note = Note.find(params[:id])
     @tab = params[:tab]
-    @record_type = "note"
     @accounts = @note.accounts
     @contacts = @note.contacts
     @opportunities = @note.opportunities
@@ -33,6 +33,20 @@ class NotesController < ApplicationController
       redirect_to note_path(@note)
     else
       render :new
+    end
+  end
+
+  def link
+    @note = Note.find(params[:id])
+    @current_record = session[:active_record][:type].find(session[:active_record][:id])
+
+    if @current_record.notes.include?(@note)
+      flash[:danger] = "'#{@current_record.search_display_name}' is already linked to '#{@note.search_display_name}'"
+      redirect_to @current_record
+    else
+      @current_record.notes << @note
+      flash[:notice] = "'#{@current_record.search_display_name}' successfully linked to '#{@note.search_display_name}'"
+      redirect_to @current_record
     end
   end
 
