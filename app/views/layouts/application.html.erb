@@ -6,12 +6,15 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body style="background-image: url('http://boat-sites.com/wp-content/uploads/2014/04/bg-6-full.jpg'); background-repeat: repeat-y;">
   <header>
     <%= render "layouts/navigation" %>
   </header>
   <div class="container">
     <div class="row">
+      <% if !logged_in? %>
+        <br/>
+      <% end %>
       <% if flash %>
         <%= render "layouts/messages" %>
       <% end %>

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   belongs_to :role
   has_many :opportunity_users
   has_many :opportunities, through: :opportunity_users
+  has_many :notes
 
   before_save :generate_searchable
 
@@ -14,6 +15,10 @@ class User < ActiveRecord::Base
     length: { is: 10 }
   validates :password, presence: true, length: { minimum: 8, maximum: 16 }, on: :create
   validates_confirmation_of :password, on: :create
+
+  def is_admin?
+    self.role.name == "Admin"
+  end
 
   private
 

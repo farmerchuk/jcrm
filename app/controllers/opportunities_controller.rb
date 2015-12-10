@@ -1,10 +1,14 @@
 class OpportunitiesController < ApplicationController
+  before_action :require_user
+  before_action :require_same_user_or_admin, only: [:update]
+
   def new
     @opportunity = Opportunity.new
   end
 
   def create
     @opportunity = Opportunity.new(opportunity_params)
+    @opportunity.users << current_user
 
     if @opportunity.save
       flash[:notice] = "Opportunity successfully created!"
@@ -53,5 +57,14 @@ class OpportunitiesController < ApplicationController
 
   def opportunity_params
     params.require(:opportunity).permit!
+  end
+
+  def require_same_user_or_admin
+    @opportunity = Opportunity.find(params[:id])
+
+    begin
+      flash[:danger] = "You do not have access to that action!"
+      redirect_to opportunity_path(@opportunity)
+    end unless @opportunity.users.include?(current_user) || current_user.is_admin?
   end
 end

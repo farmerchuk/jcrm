@@ -1,8 +1,13 @@
 Jcrm::Application.routes.draw do
 
   root to: "home#show"
-  get "/search", to: "home#search"
-  get "/search_link", to: "home#search_link"
+
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
+  get "/logout", to: "sessions#destroy"
+
+  get "/search", to: "search#search"
+  get "/search_link", to: "search#search_link"
 
   resources :accounts do
     member do
@@ -27,7 +32,7 @@ Jcrm::Application.routes.draw do
       post "link"
     end
   end
-  
+
   resources :users do
     member do
       post "link"

@@ -26,8 +26,10 @@
           <%= f.select :stage_id, OpportunityStage.all.collect { |p| [ p.stage, p.id ] }, {}, { class: "form-control" } %>
         </div>
       </div>
-      <hr/>
-      <%= f.submit @opportunity.new_record? ? "Create Opportunity" : "Update Opportunity", class: "btn btn-primary pull-right" %>
+      <% if @opportunity.users.include?(current_user) || current_user.is_admin? %>
+        <hr/>
+        <%= f.submit @opportunity.new_record? ? "Create Opportunity" : "Update Opportunity", class: "btn btn-primary pull-right" %>
+      <% end %>
     <% end %>
   </div>
 </div>

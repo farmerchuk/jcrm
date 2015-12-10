@@ -1,12 +1,22 @@
-<br/><br/><br/>
-<div class="col-md-8 col-md-offset-2">
-  <div class="jumbotron text-center">
-    <span class="h1">JCRM</span>
-    <hr/>
-    <p>The world's simplest CRM</p>
-    <br/>
-    <p>
-      <%= link_to "Create Account ...", new_user_path, class: "btn btn-primary btn-lg" %>
-    </p>
+<br/><br/><br/><br/><br/><br/>
+<% if logged_in? %>
+  <div class="col-md-8 col-md-offset-2">
+    <div class="jumbotron text-center">
+      <span class="h1">Welcome <%= current_user.first_name %>!</span>
+      <hr/>
+      <p>Start by searching for an existing record, or creating a new record!</p>
+    </div>
   </div>
-</div>
+<% else %>
+  <div class="col-md-8 col-md-offset-2">
+    <div class="jumbotron text-center">
+      <span class="h1">JCRM</span>
+      <hr/>
+      <p>The world's simplest CRM</p>
+      <br/>
+      <p>
+        <%= link_to "Login", login_path, class: "btn btn-primary btn-lg" %> - or -
+        <%= link_to "Create New Account", new_user_path, class: "btn btn-primary btn-lg" %>
+      </p>
+    </div>
+<% end %>

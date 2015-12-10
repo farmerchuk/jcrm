@@ -1,14 +1,18 @@
 class UsersController < ApplicationController
+  before_action :require_user, except: [:new, :create]
+  before_action :require_same_user_or_admin, only: [:update]
+
   def new
     @user = User.new
   end
 
   def create
     @user = User.create(user_params)
-    @user.role = Role.find_by(role: "Basic")
+    @user.role = Role.find_by(name: "Basic")
 
     if @user.save
       flash[:notice] = "Account created successfully!"
+      session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
       render :new
@@ -17,8 +21,10 @@ class UsersController < ApplicationController
 
   def show
     session[:active_record] = { type: User, id: params[:id] }
+    @tab = params[:tab]
     @user = User.find(params[:id])
     @opportunities = @user.opportunities
+    @notes = @user.notes
   end
 
   def update
@@ -50,5 +56,14 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit!
+  end
+
+  def require_same_user_or_admin
+    @user = User.find(params[:id])
+
+    begin
+      flash[:danger] = "You do not have access to that action!"
+      redirect_to user_path(@user)
+    end unless current_user == @user || current_user.is_admin?
   end
 end

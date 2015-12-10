@@ -17,3 +17,6 @@ OpportunityStage.create(stage: "Best Case")
 OpportunityStage.create(stage: "Commit")
 OpportunityStage.create(stage: "Closed - Won")
 OpportunityStage.create(stage: "Closed - Lost")
+
+Role.create(type: "Basic")
+Role.create(type: "Admin")

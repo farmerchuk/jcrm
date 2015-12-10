@@ -8,15 +8,24 @@
 </div>
 
 <div class="col-md-8">
-  <ul class="nav nav-tabs">
-    <li role="presentation" class="active">
-      <a href="#">Opportunities</a>
+  <ul class="nav nav-pills">
+    <li role="presentation" class="<%= 'active' if @tab == 'opportunities' || @tab == nil %>">
+      <%= link_to "Opportunities", user_path(@user, tab: "opportunities") %>
+    </li>
+    <li role="presentation" class="<%= 'active' if @tab == 'notes' %>">
+      <%= link_to "Notes", user_path(@user, tab: "notes") %>
     </li>
   </ul>
   <br/>
 
-  <% @opportunities.each do |opportunity| %>
-    <%= render "opportunities/short_form", opportunity: opportunity %>
+  <% if params[:tab] == "opportunities" || params[:tab] == nil %>
+    <% @opportunities.each do |opportunity| %>
+      <%= render "opportunities/short_form", opportunity: opportunity %>
+    <% end %>
+  <% elsif params[:tab] == "notes" %>
+    <% @notes.each do |note| %>
+      <%= render "notes/short_form", note: note %>
+    <% end %>
   <% end %>
 
 </div>

@@ -1,12 +1,13 @@
 class NotesController < ApplicationController
+  before_action :require_user
+
   def new
     @note = Note.new
   end
 
   def create
     @note = Note.new(note_params)
-    @note.noteable = Account.first    # placeholder until record linking added
-    @note.user_id = 1    # placeholder until authentication added
+    @note.user_id = session[:user_id]
 
     if @note.save
       flash[:notice] = "Note successfully created!"
@@ -23,6 +24,7 @@ class NotesController < ApplicationController
     @accounts = @note.accounts
     @contacts = @note.contacts
     @opportunities = @note.opportunities
+    @user = current_user
   end
 
   def update
