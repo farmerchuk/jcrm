@@ -1,6 +1,6 @@
 <div class="col-md-8">
   <%= render "shared/errors", record: @opportunity %>
-  <%= render "opportunities/form", record_heading: "Create New Opportunity" %>
+  <%= render "opportunities/form", record_heading: "Opportunity: #{@opportunity.search_display_name}" %>
 </div>
 
 <div class="col-md-4">
@@ -19,7 +19,7 @@
       <%= link_to "Notes", opportunity_path(@opportunity, tab: "notes") %>
     </li>
     <li role="presentation" class="<%= 'active' if @tab == 'users' %>">
-      <%= link_to "Users", opportunity_path(@opportunity, tab: "users") %>
+      <%= link_to "Opportunity Owners", opportunity_path(@opportunity, tab: "users") %>
     </li>
   </ul>
   <br/>

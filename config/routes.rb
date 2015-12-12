@@ -27,6 +27,8 @@ Jcrm::Application.routes.draw do
     end
   end
 
+  resources :quotes
+
   resources :notes do
     member do
       post "link"

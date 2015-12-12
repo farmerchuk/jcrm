@@ -20,7 +20,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    session[:active_record] = { type: User, id: params[:id] }
+    @record_type = User
+    @record_id = params[:id]
     @tab = params[:tab]
     @user = User.find(params[:id])
     @opportunities = @user.opportunities
@@ -40,7 +41,7 @@ class UsersController < ApplicationController
 
   def link
     @user = User.find(params[:id])
-    @current_record = session[:active_record][:type].find(session[:active_record][:id])
+    @current_record = params[:record_type].constantize.find(params[:record_id])
 
     if @current_record.users.include?(@user)
       flash[:danger] = "'#{@current_record.search_display_name}' is already linked to '#{@user.search_display_name}'"

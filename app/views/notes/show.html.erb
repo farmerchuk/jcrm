@@ -19,7 +19,7 @@
       <%= link_to "Opportunities", note_path(@note, tab: "opportunities") %>
     </li>
     <li role="presentation" class="<%= 'active' if @tab == 'user' %>">
-      <%= link_to "User", note_path(@note, tab: "user") %>
+      <%= link_to "Note Creator", note_path(@note, tab: "user") %>
     </li>
   </ul>
   <br/>

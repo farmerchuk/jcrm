@@ -19,7 +19,8 @@ class OpportunitiesController < ApplicationController
   end
 
   def show
-    session[:active_record] = { type: Opportunity, id: params[:id] }
+    @record_type = Opportunity
+    @record_id = params[:id]
     @opportunity = Opportunity.find(params[:id])
     @tab = params[:tab]
     @accounts = @opportunity.accounts
@@ -41,7 +42,7 @@ class OpportunitiesController < ApplicationController
 
   def link
     @opportunity = Opportunity.find(params[:id])
-    @current_record = session[:active_record][:type].find(session[:active_record][:id])
+    @current_record = params[:record_type].constantize.find(params[:record_id])
 
     if @current_record.opportunities.include?(@opportunity)
       flash[:danger] = "'#{@current_record.search_display_name}' is already linked to '#{@opportunity.search_display_name}'"

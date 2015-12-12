@@ -17,7 +17,8 @@ class AccountsController < ApplicationController
   end
 
   def show
-    session[:active_record] = { type: Account, id: params[:id] }
+    @record_type = Account
+    @record_id = params[:id]
     @account = Account.find(params[:id])
     @tab = params[:tab]
     @contacts = @account.contacts
@@ -38,7 +39,7 @@ class AccountsController < ApplicationController
 
   def link
     @account = Account.find(params[:id])
-    @current_record = session[:active_record][:type].find(session[:active_record][:id])
+    @current_record = params[:record_type].constantize.find(params[:record_id])
 
     if @current_record.accounts.include?(@account)
       flash[:danger] = "'#{@current_record.search_display_name}' is already linked to '#{@account.search_display_name}'"

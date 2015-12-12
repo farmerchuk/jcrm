@@ -18,5 +18,9 @@ OpportunityStage.create(stage: "Commit")
 OpportunityStage.create(stage: "Closed - Won")
 OpportunityStage.create(stage: "Closed - Lost")
 
-Role.create(type: "Basic")
-Role.create(type: "Admin")
+Role.create(name: "Basic")
+Role.create(name: "Admin")
+
+Product.create(name: "Widget A", price: 100)
+Product.create(name: "Widget B", price: 200)
+Product.create(name: "Widget C", price: 500)

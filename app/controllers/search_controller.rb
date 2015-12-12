@@ -7,7 +7,8 @@ class SearchController < ApplicationController
   end
 
   def search_link
-    @record_type = session[:active_record][:type]
+    @record_type = params[:record_type]
+    @record_id = params[:record_id]
   end
 
   private

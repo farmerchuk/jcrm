@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209035902) do
+ActiveRecord::Schema.define(version: 20151211043548) do
 
   create_table "account_contacts", force: true do |t|
     t.integer  "account_id"
@@ -106,13 +106,6 @@ ActiveRecord::Schema.define(version: 20151209035902) do
     t.datetime "updated_at"
   end
 
-  create_table "opportunity_products", force: true do |t|
-    t.integer  "opportunity_id"
-    t.integer  "product_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "opportunity_stages", force: true do |t|
     t.string   "stage"
     t.datetime "created_at"
@@ -133,16 +126,19 @@ ActiveRecord::Schema.define(version: 20151209035902) do
     t.datetime "updated_at"
   end
 
-  create_table "roles", force: true do |t|
-    t.string   "name"
+  create_table "quotes", force: true do |t|
+    t.integer  "opportunity_id"
+    t.integer  "user_id"
+    t.integer  "product_1_qty"
+    t.integer  "product_2_qty"
+    t.integer  "product_3_qty"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "primary"
   end
 
-  create_table "transactions", force: true do |t|
-    t.integer  "opportunity_id"
-    t.integer  "product_id"
-    t.integer  "quantity"
+  create_table "roles", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

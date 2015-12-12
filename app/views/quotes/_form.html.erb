@@ -1,0 +1,60 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= record_heading %></h3>
+  </div>
+  <div class="panel-body">
+    <%= form_for @quote do |f| %>
+      <%= hidden_field_tag 'opportunity_id', @opportunity_id %>
+      <table class="table table-hover">
+        <tr>
+          <th>Product Quantity</th>
+          <th>Product Name</th>
+          <th>Product Price / Unit</th>
+        </tr>
+        <tr>
+          <td>
+            <div class="row">
+              <div class="col-md-3">
+                <%= f.text_field :product_1_qty, value: "0", class: "form-control" %>
+              </div>
+            </div>
+          </td>
+          <td><%= Product.find(1).name %></td>
+          <td>$ <%= Product.find(1).price %>.00</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="row">
+              <div class="col-md-3">
+                <%= f.text_field :product_2_qty, value: "0", class: "form-control" %>
+              </div>
+            </div>
+          </td>
+          <td><%= Product.find(2).name %></td>
+          <td>$ <%= Product.find(2).price %>.00</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="row">
+              <div class="col-md-3">
+                <%= f.text_field :product_3_qty, value: "0", class: "form-control" %>
+              </div>
+            </div>
+          </td>
+          <td><%= Product.find(3).name %></td>
+          <td>$ <%= Product.find(3).price %>.00</td>
+        </tr>
+      </table>
+      <div class="row">
+        <div class="form-group checkbox col-md-3">
+          <%= f.label :primary do %>
+            <%= f.check_box :primary, class: "checkbox" %>
+            Will this be the primary quote?
+          <% end %>
+        </div>
+      </div>
+      <hr/>
+      <%= f.submit @quote.new_record? ? "Create Quote" : "Update Quote", class: "btn btn-primary pull-right" %>
+    <% end %>
+  </div>
+</div>
