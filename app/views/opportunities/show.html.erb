@@ -9,7 +9,10 @@
 
 <div class="col-md-8">
   <ul class="nav nav-pills">
-    <li role="presentation" class="<%= 'active' if @tab == 'accounts' || @tab == nil %>">
+    <li role="presentation" class="<%= 'active' if @tab == 'quotes' || @tab == nil %>">
+      <%= link_to "Quotes", opportunity_path(@opportunity, tab: "quotes") %>
+    </li>
+    <li role="presentation" class="<%= 'active' if @tab == 'accounts' %>">
       <%= link_to "Accounts", opportunity_path(@opportunity, tab: "accounts") %>
     </li>
     <li role="presentation" class="<%= 'active' if @tab == 'contacts' %>">
@@ -24,7 +27,11 @@
   </ul>
   <br/>
 
-  <% if params[:tab] == "accounts" || params[:tab] == nil %>
+  <% if params[:tab] == "quotes" || params[:tab] == nil %>
+    <% @quotes.each do |quote| %>
+      <%= render "quotes/short_form", quote: quote %>
+    <% end %>
+  <% elsif params[:tab] == "accounts" %>
     <% @accounts.each do |account| %>
       <%= render "accounts/short_form", account: account %>
     <% end %>

@@ -1,0 +1,67 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Quote: <%= quote.id %></h3>
+  </div>
+  <div class="panel-body">
+    <%= form_for quote do |f| %>
+      <table class="table table-hover">
+        <tr>
+          <th>Product Quantity</th>
+          <th>Product Name</th>
+          <th>Product Price / Unit</th>
+        </tr>
+        <tr>
+          <td>
+            <div class="row">
+              <div class="col-md-4">
+                <%= f.text_field :product_1_qty, value: "#{quote.product_1_qty}", class: "form-control", disabled: true %>
+              </div>
+            </div>
+          </td>
+          <td><%= Product.find(1).name %></td>
+          <td>$ <%= Product.find(1).price %>.00</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="row">
+              <div class="col-md-4">
+                <%= f.text_field :product_2_qty, value: "#{quote.product_2_qty}", class: "form-control", disabled: true %>
+              </div>
+            </div>
+          </td>
+          <td><%= Product.find(2).name %></td>
+          <td>$ <%= Product.find(2).price %>.00</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="row">
+              <div class="col-md-4">
+                <%= f.text_field :product_3_qty, value: "#{quote.product_3_qty}", class: "form-control", disabled: true %>
+              </div>
+            </div>
+          </td>
+          <td><%= Product.find(3).name %></td>
+          <td>$ <%= Product.find(3).price %>.00</td>
+        </tr>
+      </table>
+      <div class="row">
+        <div class="form-group checkbox col-md-3">
+          <%= f.label :primary do %>
+            <%= f.check_box :primary, class: "checkbox", disabled: true %>
+            Primary quote?
+          <% end %>
+        </div>
+        <div class="form-group col-md-4 pull-right">
+          <%= label_tag :value, "Quote Value" %>
+          <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <%= text_field_tag :value, "#{quote.value}", class: "form-control text-right", disabled: true %>
+            <span class="input-group-addon">.00</span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <hr/>
+    <%= link_to "View Quote", quote_path(quote, opportunity_id: @opportunity), class: "btn btn-default pull-right" %>
+  </div>
+</div>

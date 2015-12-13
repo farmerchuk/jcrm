@@ -19,11 +19,11 @@ class SearchController < ApplicationController
     @opportunities = []
     @notes = []
     @users = []
-    accounts = Account.all
-    contacts = Contact.all
-    opportunities = Opportunity.all
-    notes = Note.all
-    users = User.all
+    accounts = Account.all.sort_by { |account| account.search_display_name }
+    contacts = Contact.all.sort_by { |contact| contact.search_display_name }
+    opportunities = Opportunity.all.sort_by { |opportunity| opportunity.search_display_name }
+    notes = Note.all.sort_by { |note| note.created_at }
+    users = User.all.sort_by { |user| user.search_display_name }
     query = params[:query].gsub(/[^0-9a-z]/i, '').downcase
 
     accounts.each do |account|

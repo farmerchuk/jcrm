@@ -25,6 +25,14 @@
           <%= f.label :stage_id, "Stage" %>
           <%= f.select :stage_id, OpportunityStage.all.collect { |p| [ p.stage, p.id ] }, {}, { class: "form-control" } %>
         </div>
+        <div class="form-group col-md-6">
+          <%= label_tag :value, "Quote Value" %>
+          <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <%= text_field_tag :value, "#{opportunity_value(@opportunity)}", class: "form-control text-right", disabled: true %>
+            <span class="input-group-addon">.00</span>
+          </div>
+        </div>
       </div>
       <% if @opportunity.users.include?(current_user) || current_user.is_admin? %>
         <hr/>

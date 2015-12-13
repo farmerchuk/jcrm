@@ -1,5 +1,6 @@
 <% if logged_in? %>
-  <nav class="navbar navbar-default">
+  <nav class="navbar"></nav>
+  <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -10,7 +11,7 @@
           <span class="icon-bar"></span>
         </button>
         <%= link_to root_path, class: "navbar-brand" do %>
-          <span class="glyphicon glyphicon-th"></span>
+          <span class="glyphicon glyphicon-home"></span>
         <% end %>
       </div>
 
@@ -23,39 +24,31 @@
             <span class="glyphicon glyphicon-search"></span>
           </button>
         </form>
-        <form class="navbar-form navbar-left">
-          <div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-              Create New Record
-            </button>
+        <ul class="nav navbar-nav navbar-left">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+              Create New Record ... <span class="caret"></span>
+            </a>
             <ul class="dropdown-menu">
               <li>
-                <%= link_to new_account_path do %>
-                  Account
-                <% end %>
+                <%= link_to "New Account", new_account_path %>
               </li>
               <li>
-                <%= link_to new_contact_path do %>
-                  Contact
-                <% end %>
+                <%= link_to "New Contact", new_contact_path %>
               </li>
               <li>
-                <%= link_to new_opportunity_path do %>
-                  Opportunity
-                <% end %>
+                <%= link_to "New Opportunity", new_opportunity_path %>
               </li>
               <li>
-                <%= link_to new_note_path do %>
-                  Note
-                <% end %>
+                <%= link_to "New Note", new_note_path %>
               </li>
             </ul>
-          </div>
-        </form>
+          </li>
+        </ul>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-              Currently logged in as: <strong><%= current_user.first_name %></strong> <span class="caret"></span>
+              Signed in as: <strong><%= current_user.first_name %></strong> <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
               <li>

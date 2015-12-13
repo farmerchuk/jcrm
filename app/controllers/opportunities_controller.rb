@@ -27,6 +27,7 @@ class OpportunitiesController < ApplicationController
     @contacts = @opportunity.contacts
     @notes = @opportunity.notes
     @users = @opportunity.users
+    @quotes = @opportunity.quotes
   end
 
   def update
