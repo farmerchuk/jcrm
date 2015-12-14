@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
   end
 
   def opportunity_value(opp)
-    opp.quotes.size > 0 ? opp.quotes.find_by(primary: true).value : 0
+    if opp.quotes.size > 0 && opp.quotes.find_by(primary: true)
+      opp.quotes.find_by(primary: true).value
+    else
+      0
+    end
   end
 end

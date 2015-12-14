@@ -34,12 +34,15 @@
           </div>
         </div>
       </div>
-      <% if @opportunity.users.include?(current_user) || current_user.is_admin? %>
+      <% if @opportunity.new_record? %>
         <hr/>
-        <% if !@opportunity.new_record? %>
+        <%= f.submit "Create Opportunity", class: "btn btn-primary pull-right" %>
+      <% else %>
+        <% if @opportunity.users.include?(current_user) || current_user.is_admin? %>
+          <hr/>
           <%= link_to "Add New Quote to Opportunity", new_quote_path(opportunity_id: @opportunity), class: "btn btn-default pull-left" %>
+          <%= f.submit @opportunity.new_record? ? "Create Opportunity" : "Update Opportunity", class: "btn btn-primary pull-right" %>
         <% end %>
-        <%= f.submit @opportunity.new_record? ? "Create Opportunity" : "Update Opportunity", class: "btn btn-primary pull-right" %>
       <% end %>
     <% end %>
   </div>

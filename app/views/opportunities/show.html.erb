@@ -22,7 +22,7 @@
       <%= link_to "Notes", opportunity_path(@opportunity, tab: "notes") %>
     </li>
     <li role="presentation" class="<%= 'active' if @tab == 'users' %>">
-      <%= link_to "Opportunity Owners", opportunity_path(@opportunity, tab: "users") %>
+      <%= link_to "Opportunity Managers", opportunity_path(@opportunity, tab: "users") %>
     </li>
   </ul>
   <br/>
