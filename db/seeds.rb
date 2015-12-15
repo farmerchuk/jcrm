@@ -24,3 +24,5 @@ Role.create(name: "Admin")
 Product.create(name: "Widget A", price: 100)
 Product.create(name: "Widget B", price: 200)
 Product.create(name: "Widget C", price: 500)
+
+User.create(first_name: "Jason", last_name: "Slusarchuk", time_zone: "Pacific Time (US & Canada)", two_factor: true, phone_number: "6044387361", role_id: "2", password: "password", password_confirmation: "password", email: "jason@gmail.com")

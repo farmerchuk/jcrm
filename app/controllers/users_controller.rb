@@ -70,4 +70,13 @@ class UsersController < ApplicationController
     params.require(:user).permit!
   end
 
+  def require_same_user_or_admin
+    @user = User.find(params[:id])
+
+    begin
+      flash[:danger] = "You do not have access to that action!"
+      redirect_to user_path(@user)
+    end unless @user == current_user || current_user.is_admin?
+  end
+
 end
