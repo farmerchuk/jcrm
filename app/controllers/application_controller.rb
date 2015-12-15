@@ -18,12 +18,12 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin
-    access_denied unless logged_in? && current_user.role.type == "Admin"
+    access_denied unless logged_in? && current_user.role.name == "Admin"
   end
 
   def access_denied
-    flash[:danger] = "You are not logged in!"
-    redirect_to root_path
+    flash[:danger] = "You do not have permission for that action!"
+    redirect_to :back
   end
 
   def opportunity_value(opp)

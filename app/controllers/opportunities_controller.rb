@@ -1,6 +1,7 @@
 class OpportunitiesController < ApplicationController
   before_action :require_user
   before_action :require_same_user_or_admin, only: [:update]
+  before_action :require_admin, only: [:unlink]
 
   def new
     @opportunity = Opportunity.new
@@ -53,6 +54,14 @@ class OpportunitiesController < ApplicationController
       flash[:notice] = "'#{@current_record.search_display_name}' successfully linked to '#{@opportunity.search_display_name}'"
       redirect_to @current_record
     end
+  end
+
+  def unlink
+    @opportunity = Opportunity.find(params[:id])
+    @current_record = params[:record_type].constantize.find(params[:record_id])
+    @current_record.opportunities.delete(@opportunity)
+    flash[:notice] = "'#{@opportunity.search_display_name}' successfully unlinked from '#{@current_record.search_display_name}'"
+    redirect_to @current_record
   end
 
   private

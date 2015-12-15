@@ -26,6 +26,9 @@
       </div>
     <% end %>
     <hr/>
+    <% if @record_type != Note && current_user.is_admin? %>
+      <%= link_to "Unlink User", unlink_user_path(user, record_type: @record_type, record_id: @record_id), method: :post, class: "btn btn-default pull-left" %>
+    <% end %>
     <%= link_to "View User", user_path(user), class: "btn btn-default pull-right" %>
   </div>
 </div>

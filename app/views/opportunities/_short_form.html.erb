@@ -34,6 +34,9 @@
       </div>
     <% end %>
     <hr/>
+    <% if current_user.is_admin? %>
+      <%= link_to "Unlink Opportunity", unlink_opportunity_path(opportunity, record_type: @record_type, record_id: @record_id), method: :post, class: "btn btn-default pull-left" %>
+    <% end %>
     <%= link_to "View Opportunity", opportunity_path(opportunity), class: "btn btn-default pull-right" %>
   </div>
 </div>

@@ -1,5 +1,6 @@
 class NotesController < ApplicationController
   before_action :require_user
+  before_action :require_admin, only: [:unlink]
 
   def new
     @note = Note.new
@@ -53,9 +54,18 @@ class NotesController < ApplicationController
     end
   end
 
+  def unlink
+    @note = Note.find(params[:id])
+    @current_record = params[:record_type].constantize.find(params[:record_id])
+    @current_record.notes.delete(@note)
+    flash[:notice] = "'#{@note.search_display_name}' successfully unlinked from '#{@current_record.search_display_name}'"
+    redirect_to @current_record
+  end
+
   private
 
   def note_params
     params.require(:note).permit!
   end
+
 end

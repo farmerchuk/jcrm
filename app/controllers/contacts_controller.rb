@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
   before_action :require_user
+  before_action :require_admin, only: [:unlink]
 
   def new
     @contact = Contact.new
@@ -51,9 +52,18 @@ class ContactsController < ApplicationController
     end
   end
 
+  def unlink
+    @contact = Contact.find(params[:id])
+    @current_record = params[:record_type].constantize.find(params[:record_id])
+    @current_record.contacts.delete(@contact)
+    flash[:notice] = "'#{@contact.search_display_name}' successfully unlinked from '#{@current_record.search_display_name}'"
+    redirect_to @current_record
+  end
+
   private
 
   def contact_params
     params.require(:contact).permit!
   end
+
 end

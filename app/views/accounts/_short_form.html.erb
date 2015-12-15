@@ -46,6 +46,9 @@
       </div>
     <% end %>
     <hr/>
+    <% if current_user.is_admin? %>
+      <%= link_to "Unlink Account", unlink_account_path(account, record_type: @record_type, record_id: @record_id), method: :post, class: "btn btn-default pull-left" %>
+    <% end %>
     <%= link_to "View Account", account_path(account), class: "btn btn-default pull-right" %>
   </div>
 </div>

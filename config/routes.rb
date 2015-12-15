@@ -12,18 +12,21 @@ Jcrm::Application.routes.draw do
   resources :accounts do
     member do
       post "link"
+      post "unlink"
     end
   end
 
   resources :contacts do
     member do
       post "link"
+      post "unlink"
     end
   end
 
   resources :opportunities do
     member do
       post "link"
+      post "unlink"
     end
   end
 
@@ -32,12 +35,14 @@ Jcrm::Application.routes.draw do
   resources :notes do
     member do
       post "link"
+      post "unlink"
     end
   end
 
   resources :users do
     member do
       post "link"
+      post "unlink"
     end
   end
 

@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
   before_action :require_user
+  before_action :require_admin, only: [:unlink]
 
   def new
     @account = Account.new
@@ -49,6 +50,14 @@ class AccountsController < ApplicationController
       flash[:notice] = "'#{@current_record.search_display_name}' successfully linked to '#{@account.search_display_name}'"
       redirect_to @current_record
     end
+  end
+
+  def unlink
+    @account = Account.find(params[:id])
+    @current_record = params[:record_type].constantize.find(params[:record_id])
+    @current_record.accounts.delete(@account)
+    flash[:notice] = "'#{@account.search_display_name}' successfully unlinked from '#{@current_record.search_display_name}'"
+    redirect_to @current_record
   end
 
   private
