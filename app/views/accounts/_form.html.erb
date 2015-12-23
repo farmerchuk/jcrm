@@ -5,41 +5,41 @@
   <div class="panel-body">
     <%= form_for @account do |f| %>
       <div class="row">
-        <div class="form-group col-md-8">
+        <div class="form-group col-xs-8">
           <%= f.label :name, "Account Name" %>
           <%= f.text_field :name, class: "form-control" %>
         </div>
       </div>
       <div class="row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-xs-6">
           <%= f.label :street, "Street Address" %>
           <%= f.text_field :street, class: "form-control" %>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-xs-6">
           <%= f.label :city, "City" %>
           <%= f.text_field :city, class: "form-control" %>
         </div>
       </div>
       <div class="row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-xs-4">
           <%= f.label :region, "State/Province" %>
           <%= f.text_field :region, class: "form-control" %>
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-xs-3">
           <%= f.label :postal_code, "Postal/Zip Code" %>
           <%= f.text_field :postal_code, class: "form-control" %>
         </div>
-        <div class="form-group col-md-5">
+        <div class="form-group col-xs-5">
           <%= f.label :country, "Country" %>
           <%= f.text_field :country, class: "form-control" %>
         </div>
       </div>
       <div class="row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-xs-6">
           <%= f.label :industry_id, "Industry" %>
           <%= f.select :industry_id, Industry.all.collect { |p| [ p.name, p.id ] }, {}, { class: "form-control" } %>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-xs-6">
           <%= f.label :website, "Website" %>
           <%= f.text_field :website, class: "form-control" %>
         </div>

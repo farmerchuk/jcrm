@@ -1,13 +1,13 @@
-<div class="col-md-8">
+<div class="col-xs-8">
   <%= render "shared/errors", record: @contact %>
   <%= render "contacts/form", record_heading: "Contact: #{@contact.search_display_name}" %>
 </div>
 
-<div class="col-md-4">
+<div class="col-xs-4">
   <%= render "shared/link_records" %>
 </div>
 
-<div class="col-md-8">
+<div class="col-xs-8">
   <ul class="nav nav-pills">
     <li role="presentation" class="<%= 'active' if @tab == 'accounts' || @tab == nil %>">
       <%= link_to "Accounts", contact_path(@contact, tab: "accounts") %>

@@ -1,5 +1,5 @@
 <br/><br/><br/><br/><br/><br/>
-<div class="col-md-8 col-md-offset-2">
+<div class="col-xs-8 col-xs-offset-2">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">Login</h3>
@@ -7,13 +7,13 @@
     <div class="panel-body">
       <%= form_tag "/login", method: :post do %>
         <div class="row">
-          <div class="form-group col-md-6 col-md-offset-3">
+          <div class="form-group col-xs-6 col-xs-offset-3">
             <%= label_tag :email_address %>
             <%= text_field_tag :email_address, "", class: "form-control" %>
           </div>
         </div>
         <div class="row">
-          <div class="form-group col-md-6 col-md-offset-3">
+          <div class="form-group col-xs-6 col-xs-offset-3">
             <%= label_tag :password %>
             <%= password_field_tag :password, "", class: "form-control" %>
           </div>

@@ -13,7 +13,7 @@
         <tr>
           <td>
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-xs-4">
                 <%= f.text_field :product_1_qty, value: "#{quote.product_1_qty}", class: "form-control", disabled: true %>
               </div>
             </div>
@@ -24,7 +24,7 @@
         <tr>
           <td>
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-xs-4">
                 <%= f.text_field :product_2_qty, value: "#{quote.product_2_qty}", class: "form-control", disabled: true %>
               </div>
             </div>
@@ -35,7 +35,7 @@
         <tr>
           <td>
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-xs-4">
                 <%= f.text_field :product_3_qty, value: "#{quote.product_3_qty}", class: "form-control", disabled: true %>
               </div>
             </div>
@@ -45,13 +45,13 @@
         </tr>
       </table>
       <div class="row">
-        <div class="form-group checkbox col-md-3">
+        <div class="form-group checkbox col-xs-3">
           <%= f.label :primary do %>
             <%= f.check_box :primary, class: "checkbox", disabled: true %>
             Primary quote?
           <% end %>
         </div>
-        <div class="form-group col-md-4 pull-right">
+        <div class="form-group col-xs-4 pull-right">
           <%= label_tag :value, "Quote Value" %>
           <div class="input-group">
             <span class="input-group-addon">$</span>

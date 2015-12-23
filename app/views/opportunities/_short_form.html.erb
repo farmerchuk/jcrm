@@ -5,25 +5,25 @@
   <div class="panel-body">
     <%= form_for opportunity do |f| %>
       <div class="row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-xs-6">
           <%= f.label :name, "Opportunity Name" %>
           <%= f.text_field :name, class: "form-control", disabled: true %>
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-xs-3">
           <%= f.label :created_at, "Created" %>
           <%= f.text_field :created_at, class: "form-control", disabled: true %>
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-xs-3">
           <%= f.label :updated_at, "Last Updated" %>
           <%= f.text_field :updated_at, class: "form-control", disabled: true %>
         </div>
       </div>
       <div class="row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-xs-6">
           <%= f.label :stage_id, "Stage" %>
           <%= f.select :stage_id, OpportunityStage.all.collect { |p| [ p.stage, p.id ] }, {}, { class: "form-control", disabled: true } %>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-xs-6">
           <%= label_tag :value, "Quote Value" %>
           <div class="input-group">
             <span class="input-group-addon">$</span>
